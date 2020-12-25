@@ -1,16 +1,29 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {View, StyleSheet, TextInput, Button} from 'react-native'
 
 export const AddTodo = ({onAdd}) => {
 
+    const [value, setValue] = useState('')
+
     const pressHandler = () => {
-        onAdd('todo')
+        if (value.trim()) {
+            onAdd(value)
+            setValue('')
+        } else {
+            // error
+        }
+
     }
 
     return (
         <View style={styles.block}>
-            <TextInput style={styles.input}/>
-            <Button title={'Add'} onPress={pressHandler}/>
+            <TextInput
+                style={styles.input}
+                onChangeText={setValue}
+                value={value}
+                placeholder={'todo name'}
+            />
+            <Button title={'Add'} onPress={pressHandler} disabled={!value}/>
         </View>
     )
 }
@@ -19,7 +32,8 @@ const styles = StyleSheet.create({
     block: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 15
     },
     input: {
         width: '70%',
