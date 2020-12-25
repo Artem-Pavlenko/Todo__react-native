@@ -1,12 +1,16 @@
 import React from 'react'
 import {View, StyleSheet, TextInput, Button} from 'react-native'
 
-export const AddTodo = props => {
+export const AddTodo = ({onAdd}) => {
+
+    const pressHandler = () => {
+        onAdd('todo')
+    }
 
     return (
         <View style={styles.block}>
             <TextInput style={styles.input}/>
-            <Button title={'Add'}/>
+            <Button title={'Add'} onPress={pressHandler}/>
         </View>
     )
 }
