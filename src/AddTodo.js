@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, StyleSheet, TextInput, Button} from 'react-native'
+import {View, StyleSheet, TextInput, Button, Alert} from 'react-native'
 
 export const AddTodo = ({onAdd}) => {
 
@@ -10,7 +10,7 @@ export const AddTodo = ({onAdd}) => {
             onAdd(value)
             setValue('')
         } else {
-            // error
+            Alert.alert('Name of the todo cannot be empty')
         }
 
     }
@@ -22,6 +22,7 @@ export const AddTodo = ({onAdd}) => {
                 onChangeText={setValue}
                 value={value}
                 placeholder={'todo name'}
+                autoCorrect={false}
             />
             <Button title={'Add'} onPress={pressHandler} disabled={!value}/>
         </View>
